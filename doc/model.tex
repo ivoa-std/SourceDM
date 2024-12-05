@@ -62,6 +62,16 @@
   \label{sect:BitField}
     Property for which each possible value is represented by a bit, so that multiple states can be contained in the same integer value. The possible values are defined in the associated \texttt{StatusValues}, which must correspond to a bit pattern (each value must be a power of 2). This constraint is not enforced by the model.
 
+  \subsection{Brightness}
+  \label{sect:Brightness}
+    Observed brightness of the \texttt{MangoObject}. The distinction between fluxes and magnitudes is made by the unit. This property should refer to a photometric calibration as defined by the \texttt{Phot} data model (1.1).
+
+    \subsubsection{Brightness.photCal}
+      \textbf{vodml-id: Brightness.photCal} \newline
+      \textbf{type: Phot:PhotCal} \newline
+      \textbf{multiplicity: 1} \newline
+      Photometric calibration that applies to the photometric property. It must be an instance of \texttt{photdm:PhotCal}.
+
   \subsection{Color}
   \label{sect:Color}
     Property that describes a color of the \texttt{MangoObject}. The color is not an intrinsic property of the MANGO object, but a value relative to two filters or energy bands.
@@ -282,26 +292,26 @@
 
     \subsubsection{EpochPositionErrors.parallax}
       \textbf{vodml-id: EpochPositionErrors.parallax} \newline
-      \textbf{type: \hyperref[sect:error.Symmetric1D]{mango:error.Symmetric1D}} \newline
-      \textbf{multiplicity: 0..1} \newline
+      \textbf{type: \hyperref[sect:error.PropertyError]{mango:error.PropertyError}} \newline
+      \textbf{multiplicity: 1} \newline
       Parallax error. This error is meant to be symmetrical in the current model version.
 
     \subsubsection{EpochPositionErrors.radialVelocity}
       \textbf{vodml-id: EpochPositionErrors.radialVelocity} \newline
-      \textbf{type: \hyperref[sect:error.Symmetric1D]{mango:error.Symmetric1D}} \newline
-      \textbf{multiplicity: 0..1} \newline
+      \textbf{type: \hyperref[sect:error.PropertyError]{mango:error.PropertyError}} \newline
+      \textbf{multiplicity: 1} \newline
       Error in the radial velocity. This error is meant to be symmetrical in the current model version.
-
-    \subsubsection{EpochPositionErrors.position}
-      \textbf{vodml-id: EpochPositionErrors.position} \newline
-      \textbf{type: \hyperref[sect:error.PropertyError2D]{mango:error.PropertyError2D}} \newline
-      \textbf{multiplicity: 0..1} \newline
-      Position error; can be an ellipse, a correlation matrix or a covariance matrix.
 
     \subsubsection{EpochPositionErrors.properMotion}
       \textbf{vodml-id: EpochPositionErrors.properMotion} \newline
-      \textbf{type: \hyperref[sect:error.PropertyError2D]{mango:error.PropertyError2D}} \newline
-      \textbf{multiplicity: 0..1} \newline
+      \textbf{type: \hyperref[sect:error.PropertyError]{mango:error.PropertyError}} \newline
+      \textbf{multiplicity: 1} \newline
+      Position error; can be an ellipse, a correlation matrix or a covariance matrix.
+
+    \subsubsection{EpochPositionErrors.Position}
+      \textbf{vodml-id: EpochPositionErrors.Position} \newline
+      \textbf{type: \hyperref[sect:error.PropertyError]{mango:error.PropertyError}} \newline
+      \textbf{multiplicity: 1} \newline
       Position error; can be an ellipse, a correlation matrix or a covariance matrix.
 
   \subsection{Label}
@@ -344,7 +354,7 @@
 
   \subsection{PhotometricProperty}
   \label{sect:PhotometricProperty}
-    Observed brightness of the \texttt{MangoObject}. The distinction between fluxes and magnitudes is made by the unit. This property should refer to a photometric calibration as defined by the \texttt{Phot} data model (1.1).
+    Super class for all photometric properties of the \texttt{MangoObject}.
 
     \subsubsection{PhotometricProperty.value}
       \textbf{vodml-id: PhotometricProperty.value} \newline
@@ -355,14 +365,14 @@
     \subsubsection{PhotometricProperty.error}
       \textbf{vodml-id: PhotometricProperty.error} \newline
       \textbf{type: meas:Uncertainty} \newline
-      \textbf{multiplicity: 0..1} \newline
+      \textbf{multiplicity: 1} \newline
       Error on the \texttt{PhotometricProperty}, imported from \texttt{meas:Uncertainty}.
 
-    \subsubsection{PhotometricProperty.photCal}
-      \textbf{vodml-id: PhotometricProperty.photCal} \newline
-      \textbf{type: Phot:PhotCal} \newline
-      \textbf{multiplicity: 1} \newline
-      Photometric calibration that applies to the photometric property. It must be an instance of \texttt{photdm:PhotCal}.
+    \subsubsection{PhotometricProperty.error}
+      \textbf{vodml-id: PhotometricProperty.error} \newline
+      \textbf{type: meas:Uncertainty} \newline
+      \textbf{multiplicity: 0..1} \newline
+      TODO : Missing description : please, update your UML model asap.
 
   \subsection{PhysicalProperty}
   \label{sect:PhysicalProperty}
@@ -674,10 +684,6 @@
       \textbf{type: \hyperref[sect:ivoa]{ivoa:real}} \newline
       \textbf{multiplicity: 1} \newline
       Confidence level of the error. The confidence level must be in $[0, 1]$ (not enforced by the VO-DML schema).
-
-  \subsection{PropertyError2D (Abstract)}
-  \label{sect:error.PropertyError2D}
-    Super (abstract) class for all errors of 2D parameters
 
   \subsection{Symmetric1D}
   \label{sect:error.Symmetric1D}

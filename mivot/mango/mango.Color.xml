@@ -11,6 +11,7 @@ but a value relative to two filters or energy bands.
    <ATTRIBUTE dmrole="mango:Property.description" dmtype="ivoa:string" ref="@@@@@" value=""/>
    <ATTRIBUTE dmrole="mango:PhotometricProperty.value" dmtype="ivoa:RealQuantity" unit="" ref="@@@@@" value=""/>
    <INSTANCE dmrole="mango:PhotometricProperty.error" dmtype="meas:Uncertainty"/>
+   <INSTANCE dmrole="mango:PhotometricProperty.error" dmtype="meas:Uncertainty"/>
    <INSTANCE dmrole="mango:Color.colorDef" dmtype="mango:ColorDef">
       <!-- Physical color definition giving the way a color is calculated (magnitude difference or hardness ratio)
 and the filters on which the color is based. 

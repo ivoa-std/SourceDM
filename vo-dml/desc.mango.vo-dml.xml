@@ -7,7 +7,7 @@
   <author>Laurent Michel, Fran??ois Bonnarel, Gilles Landais, Mireille Louys, Marco Molinaro, Jesue Salgado</author>
   <version>1.0</version>
   <previousVersion>0.0</previousVersion>
-  <lastModified>2024-10-17T16:22:43</lastModified>
+  <lastModified>2024-12-05T09:46:02</lastModified>
   <import>
     <name>ivoa</name>
     <url>http://www.ivoa.net/xml/VODML/IVOA-v1.vo-dml.xml</url>
@@ -482,9 +482,8 @@ Each value has its own free text description.</description>
   <objectType>
     <vodml-id>PhotometricProperty</vodml-id>
     <name>PhotometricProperty</name>
-    <description>Observed brightness of the \texttt{MangoObject}.
-The distinction between fluxes and magnitudes is made by the unit.
-This property should refer to a photometric calibration as defined by the \texttt{Phot} data model (1.1).</description>
+    <description>Super class for all photometric properties of the \texttt{MangoObject}.
+</description>
     <extends>
       <vodml-ref>mango:Property</vodml-ref>
     </extends>
@@ -501,10 +500,24 @@ as defined by the \texttt{PhotDM} model.</description>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
     </attribute>
-    <composition>
+    <attribute>
       <vodml-id>PhotometricProperty.error</vodml-id>
       <name>error</name>
       <description>Error on the \texttt{PhotometricProperty}, imported from \texttt{meas:Uncertainty}.</description>
+      <datatype>
+        <vodml-ref>meas:Uncertainty</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <composition>
+      <vodml-id>PhotometricProperty.error</vodml-id>
+      <name>error</name>
+      <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
       <datatype>
         <vodml-ref>meas:Uncertainty</vodml-ref>
       </datatype>
@@ -513,19 +526,6 @@ as defined by the \texttt{PhotDM} model.</description>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
     </composition>
-    <reference>
-      <vodml-id>PhotometricProperty.photCal</vodml-id>
-      <name>photCal</name>
-      <description>Photometric calibration that applies to the photometric property.
-It must be an instance of \texttt{photdm:PhotCal}.</description>
-      <datatype>
-        <vodml-ref>Phot:PhotCal</vodml-ref>
-      </datatype>
-      <multiplicity>
-        <minOccurs>1</minOccurs>
-        <maxOccurs>1</maxOccurs>
-      </multiplicity>
-    </reference>
   </objectType>
 
   <objectType>
@@ -883,54 +883,54 @@ providers to convey whether or not the factor has been applied (see \texttt{meas
     <vodml-id>EpochPositionErrors</vodml-id>
     <name>EpochPositionErrors</name>
     <description>Class holder for the errors of the EpochPosition attributes</description>
-    <composition>
+    <attribute>
       <vodml-id>EpochPositionErrors.parallax</vodml-id>
       <name>parallax</name>
       <description> Parallax error. This error is meant to be symmetrical in the current model version.</description>
       <datatype>
-        <vodml-ref>mango:error.Symmetric1D</vodml-ref>
+        <vodml-ref>mango:error.PropertyError</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>0</minOccurs>
+        <minOccurs>1</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
-    </composition>
-    <composition>
+    </attribute>
+    <attribute>
       <vodml-id>EpochPositionErrors.radialVelocity</vodml-id>
       <name>radialVelocity</name>
       <description>Error in the radial velocity.  This error is meant to be symmetrical in the current model version.</description>
       <datatype>
-        <vodml-ref>mango:error.Symmetric1D</vodml-ref>
+        <vodml-ref>mango:error.PropertyError</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>0</minOccurs>
+        <minOccurs>1</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
-    </composition>
-    <composition>
-      <vodml-id>EpochPositionErrors.position</vodml-id>
-      <name>position</name>
-      <description> Position error; can be an ellipse, a correlation matrix or a covariance matrix.</description>
-      <datatype>
-        <vodml-ref>mango:error.PropertyError2D</vodml-ref>
-      </datatype>
-      <multiplicity>
-        <minOccurs>0</minOccurs>
-        <maxOccurs>1</maxOccurs>
-      </multiplicity>
-    </composition>
-    <composition>
+    </attribute>
+    <attribute>
       <vodml-id>EpochPositionErrors.properMotion</vodml-id>
       <name>properMotion</name>
       <description> Position error; can be an ellipse, a correlation matrix or a covariance matrix.</description>
       <datatype>
-        <vodml-ref>mango:error.PropertyError2D</vodml-ref>
+        <vodml-ref>mango:error.PropertyError</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>0</minOccurs>
+        <minOccurs>1</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
-    </composition>
+    </attribute>
+    <attribute>
+      <vodml-id>EpochPositionErrors.Position</vodml-id>
+      <name>Position</name>
+      <description> Position error; can be an ellipse, a correlation matrix or a covariance matrix.</description>
+      <datatype>
+        <vodml-ref>mango:error.PropertyError</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
   </objectType>
 
   <objectType>
@@ -1071,6 +1071,30 @@ providers to convey whether or not the factor has been applied (see \texttt{meas
     </attribute>
   </objectType>
 
+  <objectType>
+    <vodml-id>Brightness</vodml-id>
+    <name>Brightness</name>
+    <description>Observed brightness of the \texttt{MangoObject}.
+The distinction between fluxes and magnitudes is made by the unit.
+This property should refer to a photometric calibration as defined by the \texttt{Phot} data model (1.1).</description>
+    <extends>
+      <vodml-ref>mango:PhotometricProperty</vodml-ref>
+    </extends>
+    <reference>
+      <vodml-id>Brightness.photCal</vodml-id>
+      <name>photCal</name>
+      <description>Photometric calibration that applies to the photometric property.
+It must be an instance of \texttt{photdm:PhotCal}.</description>
+      <datatype>
+        <vodml-ref>Phot:PhotCal</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </reference>
+  </objectType>
+
 
 
   <package>
@@ -1131,7 +1155,7 @@ The confidence level must be in $[0, 1]$ (not enforced by the VO-DML schema).</d
       <description>Covariance matrix for the error of a 2D quantities. 
 The covariance matrix is symmetrical.</description>
       <extends>
-        <vodml-ref>mango:error.PropertyError2D</vodml-ref>
+        <vodml-ref>mango:error.PropertyError</vodml-ref>
       </extends>
       <attribute>
         <vodml-id>error.ErrorCovMatrix.variance1</vodml-id>
@@ -1178,7 +1202,7 @@ The covariance matrix is symmetrical.</description>
 Major axis and minor axis have their own units, which must be the same for both.
 This is not enforced by the model.</description>
       <extends>
-        <vodml-ref>mango:error.PropertyError2D</vodml-ref>
+        <vodml-ref>mango:error.PropertyError</vodml-ref>
       </extends>
       <attribute>
         <vodml-id>error.Ellipse.semiMajorAxis</vodml-id>
@@ -1220,15 +1244,6 @@ The angle has its own unit.</description>
       </attribute>
     </dataType>
 
-    <dataType abstract="true">
-      <vodml-id>error.PropertyError2D</vodml-id>
-      <name>PropertyError2D</name>
-      <description>Super (abstract) class for all errors of 2D parameters</description>
-      <extends>
-        <vodml-ref>mango:error.PropertyError</vodml-ref>
-      </extends>
-    </dataType>
-
     <dataType>
       <vodml-id>error.ErrorCorrMatrix</vodml-id>
       <name>ErrorCorrMatrix</name>
@@ -1236,7 +1251,7 @@ The angle has its own unit.</description>
 The correlation matrix is symmetrical.
 </description>
       <extends>
-        <vodml-ref>mango:error.PropertyError2D</vodml-ref>
+        <vodml-ref>mango:error.PropertyError</vodml-ref>
       </extends>
       <attribute>
         <vodml-id>error.ErrorCorrMatrix.sigma1</vodml-id>
