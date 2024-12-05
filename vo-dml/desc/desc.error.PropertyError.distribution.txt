@@ -1,0 +1,2 @@
+Statistical distribution of the error. 
+The Value must comply with VO vocabulary TBD (not enforced by the VO-DML schema).

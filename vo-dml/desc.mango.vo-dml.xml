@@ -7,7 +7,7 @@
   <author>Laurent Michel, Fran??ois Bonnarel, Gilles Landais, Mireille Louys, Marco Molinaro, Jesue Salgado</author>
   <version>1.0</version>
   <previousVersion>0.0</previousVersion>
-  <lastModified>2024-12-05T10:34:03</lastModified>
+  <lastModified>2024-12-05T15:05:29</lastModified>
   <import>
     <name>ivoa</name>
     <url>http://www.ivoa.net/xml/VODML/IVOA-v1.vo-dml.xml</url>
@@ -1106,6 +1106,20 @@ of properties based on \texttt{Measures} classes.</description>
 The confidence level must be in $[0, 1]$ (not enforced by the VO-DML schema).</description>
         <datatype>
           <vodml-ref>ivoa:real</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+      <attribute>
+        <vodml-id>error.PropertyError.distribution</vodml-id>
+        <name>distribution</name>
+        <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+        <datatype>
+          <vodml-ref>ivoa:string</vodml-ref>
         </datatype>
         <multiplicity>
           <minOccurs>1</minOccurs>
