@@ -10,6 +10,5 @@ This property should refer to a photometric calibration as defined by the \textt
    <ATTRIBUTE dmrole="mango:Property.description" dmtype="ivoa:string" ref="@@@@@" value=""/>
    <ATTRIBUTE dmrole="mango:PhotometricProperty.value" dmtype="ivoa:RealQuantity" unit="" ref="@@@@@" value=""/>
    <INSTANCE dmrole="mango:PhotometricProperty.error" dmtype="meas:Uncertainty"/>
-   <INSTANCE dmrole="mango:PhotometricProperty.error" dmtype="meas:Uncertainty"/>
    <INSTANCE dmrole="mango:Brightness.photCal" dmtype="Phot:PhotCal"/>
 </INSTANCE>

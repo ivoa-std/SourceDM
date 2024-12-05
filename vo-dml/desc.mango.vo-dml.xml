@@ -7,7 +7,7 @@
   <author>Laurent Michel, Fran??ois Bonnarel, Gilles Landais, Mireille Louys, Marco Molinaro, Jesue Salgado</author>
   <version>1.0</version>
   <previousVersion>0.0</previousVersion>
-  <lastModified>2024-12-05T09:46:02</lastModified>
+  <lastModified>2024-12-05T10:34:03</lastModified>
   <import>
     <name>ivoa</name>
     <url>http://www.ivoa.net/xml/VODML/IVOA-v1.vo-dml.xml</url>
@@ -512,20 +512,6 @@ as defined by the \texttt{PhotDM} model.</description>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
     </attribute>
-    <composition>
-      <vodml-id>PhotometricProperty.error</vodml-id>
-      <name>error</name>
-      <description>
-          TODO : Missing description : please, update your UML model asap.
-        </description>
-      <datatype>
-        <vodml-ref>meas:Uncertainty</vodml-ref>
-      </datatype>
-      <multiplicity>
-        <minOccurs>0</minOccurs>
-        <maxOccurs>1</maxOccurs>
-      </multiplicity>
-    </composition>
   </objectType>
 
   <objectType>
@@ -1200,7 +1186,7 @@ The covariance matrix is symmetrical.</description>
       <name>Ellipse</name>
       <description>Elliptic error for 2D parameters such as sky positions.
 Major axis and minor axis have their own units, which must be the same for both.
-This is not enforced by the model.</description>
+This is not enforced by the model. The definition of the ellipse attribute is imported from \texttt{coords:Ellipse}. </description>
       <extends>
         <vodml-ref>mango:error.PropertyError</vodml-ref>
       </extends>

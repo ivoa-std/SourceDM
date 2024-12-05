@@ -368,12 +368,6 @@
       \textbf{multiplicity: 1} \newline
       Error on the \texttt{PhotometricProperty}, imported from \texttt{meas:Uncertainty}.
 
-    \subsubsection{PhotometricProperty.error}
-      \textbf{vodml-id: PhotometricProperty.error} \newline
-      \textbf{type: meas:Uncertainty} \newline
-      \textbf{multiplicity: 0..1} \newline
-      TODO : Missing description : please, update your UML model asap.
-
   \subsection{PhysicalProperty}
   \label{sect:PhysicalProperty}
     Place holder for any quantity that can be hold by measure classes as defined in the \texttt{Astronomical Measurements Model}.
@@ -611,7 +605,7 @@
 
   \subsection{Ellipse}
   \label{sect:error.Ellipse}
-    Elliptic error for 2D parameters such as sky positions. Major axis and minor axis have their own units, which must be the same for both. This is not enforced by the model.
+    Elliptic error for 2D parameters such as sky positions. Major axis and minor axis have their own units, which must be the same for both. This is not enforced by the model. The definition of the ellipse attribute is imported from \texttt{coords:Ellipse}.
 
     \subsubsection{Ellipse.semiMajorAxis}
       \textbf{vodml-id: error.Ellipse.semiMajorAxis} \newline
