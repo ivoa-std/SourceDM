@@ -10,7 +10,7 @@
   <author>Laurent Michel, Fran??ois Bonnarel, Gilles Landais, Mireille Louys, Marco Molinaro, Jesue Salgado</author>
   <version>1.0</version>
   <previousVersion>0.0</previousVersion>
-  <lastModified>2024-12-05T15:05:29</lastModified>
+  <lastModified>2025-01-30T15:20:21</lastModified>
   <import>
     <name>ivoa</name>
     <url>http://www.ivoa.net/xml/VODML/IVOA-v1.vo-dml.xml</url>
@@ -79,29 +79,6 @@
   </enumeration>
 
   <enumeration>
-    <vodml-id>CalibrationLevel</vodml-id>
-    <name>CalibrationLevel</name>
-    <description>Science ready data with the instrument signature removed (ObsCore).</description>
-    <literal>
-      <vodml-id>CalibrationLevel.Raw</vodml-id>
-      <name>Raw</name>
-      <description>Raw  instrumental  data,  in  a  proprietary  or  internal  data provider  defined  format,  that  needs instrument specific tools to be handled (ObsCore). 
-</description>
-    </literal>
-    <literal>
-      <vodml-id>CalibrationLevel.Instrumental</vodml-id>
-      <name>Instrumental</name>
-      <description>Instrumental  data  in  a  standard  format  which could be manipulated with standard astronomical packages (ObsCore).</description>
-    </literal>
-    <literal>
-      <vodml-id>CalibrationLevel.Calibrated</vodml-id>
-      <name>Calibrated</name>
-      <description>Science ready data with the instrument signature removed (ObsCore).
-</description>
-    </literal>
-  </enumeration>
-
-  <enumeration>
     <vodml-id>ColorDefinition</vodml-id>
     <name>ColorDefinition</name>
     <description>
@@ -149,7 +126,7 @@
         <vodml-ref>ivoa:string</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>1</minOccurs>
+        <minOccurs>0</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
     </attribute>
@@ -339,7 +316,7 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         <vodml-ref>mango:VocabularyTerm</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>1</minOccurs>
+        <minOccurs>0</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
     </attribute>
@@ -352,7 +329,7 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         <vodml-ref>ivoa:string</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>1</minOccurs>
+        <minOccurs>0</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
     </attribute>
@@ -364,7 +341,7 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         <vodml-ref>mango:Property</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>1</minOccurs>
+        <minOccurs>0</minOccurs>
         <maxOccurs>-1</maxOccurs>
       </multiplicity>
     </reference>
@@ -393,7 +370,7 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         <maxOccurs>1</maxOccurs>
       </multiplicity>
     </attribute>
-    <composition>
+    <reference>
       <vodml-id>Status.allowedValues</vodml-id>
       <name>allowedValues</name>
       <description>
@@ -403,10 +380,10 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         <vodml-ref>mango:StatusValues</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>0</minOccurs>
+        <minOccurs>1</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
-    </composition>
+    </reference>
   </objectType>
 
   <objectType>
@@ -481,7 +458,7 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         <vodml-ref>coords:SpaceSys</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>0</minOccurs>
+        <minOccurs>1</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
     </reference>
@@ -541,9 +518,6 @@ As long as the vocabulary is not set, the possible values of this attribute are 
       <description>
           TODO : Missing description : please, update your UML model asap.
         </description>
-      <datatype>
-        <vodml-ref>mango:CalibrationLevel</vodml-ref>
-      </datatype>
       <multiplicity>
         <minOccurs>1</minOccurs>
         <maxOccurs>1</maxOccurs>
@@ -610,7 +584,7 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         <maxOccurs>1</maxOccurs>
       </multiplicity>
     </attribute>
-    <composition>
+    <reference>
       <vodml-id>ColorDef.high</vodml-id>
       <name>high</name>
       <description>
@@ -623,8 +597,8 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         <minOccurs>1</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
-    </composition>
-    <composition>
+    </reference>
+    <reference>
       <vodml-id>ColorDef.low</vodml-id>
       <name>low</name>
       <description>
@@ -637,7 +611,7 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         <minOccurs>1</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
-    </composition>
+    </reference>
   </objectType>
 
   <objectType>

@@ -7,7 +7,7 @@
   <author>Laurent Michel, Fran??ois Bonnarel, Gilles Landais, Mireille Louys, Marco Molinaro, Jesue Salgado</author>
   <version>1.0</version>
   <previousVersion>0.0</previousVersion>
-  <lastModified>2024-12-05T15:05:29</lastModified>
+  <lastModified>2025-01-30T13:23:15</lastModified>
   <import>
     <name>ivoa</name>
     <url>http://www.ivoa.net/xml/VODML/IVOA-v1.vo-dml.xml</url>
@@ -131,7 +131,7 @@ rewriting rules that fix the issue.</description>
         <vodml-ref>ivoa:string</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>1</minOccurs>
+        <minOccurs>0</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
     </attribute>
@@ -398,7 +398,7 @@ Boolean status can be represented by \texttt{StatusValues} with 2 values e.g. 0 
         <maxOccurs>1</maxOccurs>
       </multiplicity>
     </attribute>
-    <composition>
+    <reference>
       <vodml-id>Status.allowedValues</vodml-id>
       <name>allowedValues</name>
       <description>List of the allowed values for the status. 
@@ -407,10 +407,10 @@ Each value has its own free text description.</description>
         <vodml-ref>mango:StatusValues</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>0</minOccurs>
+        <minOccurs>1</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
-    </composition>
+    </reference>
   </objectType>
 
   <objectType>
@@ -594,7 +594,7 @@ with a square transfert function.</description>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
     </attribute>
-    <composition>
+    <reference>
       <vodml-id>ColorDef.high</vodml-id>
       <name>high</name>
       <description>Reference to the \texttt{Phot:PhotometryFilter} \citep{2022ivoa.spec.1101S} corresponding the higher band of the color.
@@ -606,8 +606,8 @@ with a square transfert function.</description>
         <minOccurs>1</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
-    </composition>
-    <composition>
+    </reference>
+    <reference>
       <vodml-id>ColorDef.low</vodml-id>
       <name>low</name>
       <description>Reference to the \texttt{Phot:PhotometryFilter} corresponding the lower band for that color.
@@ -619,7 +619,7 @@ with a square transfert function.</description>
         <minOccurs>1</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
-    </composition>
+    </reference>
   </objectType>
 
   <objectType>

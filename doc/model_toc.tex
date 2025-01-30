@@ -90,7 +90,7 @@
     \subsubsection{VocabularyTerm.label}
     \textbf{vodml-id: VocabularyTerm.label} \newline
     \textbf{type: \hyperref[sect:ivoa]{ivoa:string}} \newline
-    \textbf{multiplicity: 1} \newline
+    \textbf{multiplicity: 0..1} \newline
     Label attached to the vocabulary term. This is necessary because the URI may not contain any explicit label. This was the case for the IUA vocabulary until the Registry WG introduced rewriting rules that fix the issue.
 
 \section{Epoch Position Properties}
@@ -411,7 +411,7 @@ host objects imported from the \texttt{Measurements} data model.
     \subsubsection{Status.allowedValues}
     \textbf{vodml-id: Status.allowedValues} \newline
     \textbf{type: \hyperref[sect:StatusValues]{mango:StatusValues}} \newline
-    \textbf{multiplicity: 0..1} \newline
+    \textbf{multiplicity: 1} \newline
     List of the allowed values for the status. Each value has its own free text description.
 
   \subsection{StatusValues}
