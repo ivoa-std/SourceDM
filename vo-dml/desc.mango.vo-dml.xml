@@ -7,7 +7,7 @@
   <author>Laurent Michel, Fran??ois Bonnarel, Gilles Landais, Mireille Louys, Marco Molinaro, Jesue Salgado</author>
   <version>1.0</version>
   <previousVersion>0.0</previousVersion>
-  <lastModified>2025-01-30T13:23:15</lastModified>
+  <lastModified>2025-01-30T18:39:44</lastModified>
   <import>
     <name>ivoa</name>
     <url>http://www.ivoa.net/xml/VODML/IVOA-v1.vo-dml.xml</url>
@@ -29,23 +29,6 @@
     <documentationURL>https://ivoa.net/documents/PHOTDM/20221101/index.html</documentationURL>
   </import>
   <enumeration>
-    <vodml-id>ShapeFrame</vodml-id>
-    <name>ShapeFrame</name>
-    <description>Possible schemes to encode a shape in a string
-</description>
-    <literal>
-      <vodml-id>ShapeFrame.STC_S</vodml-id>
-      <name>STC_S</name>
-      <description>MOC serialization</description>
-    </literal>
-    <literal>
-      <vodml-id>ShapeFrame.MOC</vodml-id>
-      <name>MOC</name>
-      <description>MOC serialization</description>
-    </literal>
-  </enumeration>
-
-  <enumeration>
     <vodml-id>ShapeSerialization</vodml-id>
     <name>ShapeSerialization</name>
     <description>Enumeration of the supported serialization modes for the shapes</description>
@@ -63,28 +46,6 @@
       <vodml-id>ShapeSerialization.POLYGON</vodml-id>
       <name>POLYGON</name>
       <description>Label indicating that the shape has been serialized as a polygon (cf xtypes)</description>
-    </literal>
-  </enumeration>
-
-  <enumeration>
-    <vodml-id>CalibrationLevel</vodml-id>
-    <name>CalibrationLevel</name>
-    <description>Enumeration of different possible calibration status of the property as defined in Obscore</description>
-    <literal>
-      <vodml-id>CalibrationLevel.Raw</vodml-id>
-      <name>Raw</name>
-      <description>Raw  instrumental  data,  in  a  proprietary  or  internal  data provider  defined  format,
-that  needs instrument specific tools to be handled (ObsCore)</description>
-    </literal>
-    <literal>
-      <vodml-id>CalibrationLevel.Instrumental</vodml-id>
-      <name>Instrumental</name>
-      <description>Instrumental  data  in  a  standard  format  which could be manipulated with standard astronomical packages (ObsCore).</description>
-    </literal>
-    <literal>
-      <vodml-id>CalibrationLevel.Calibrated</vodml-id>
-      <name>Calibrated</name>
-      <description>Science ready data with the instrument signature removed (ObsCore)</description>
     </literal>
   </enumeration>
 
@@ -160,7 +121,7 @@ The format is free.</description>
     <composition>
       <vodml-id>MangoObject.propertyDock</vodml-id>
       <name>propertyDock</name>
-      <description>Reference to the open-ended collection of the \texttt{MangoObject} properties (physical or calculated).</description>
+      <description>Contains the open-ended collection of the \texttt{MangoObject} properties (physical, calculated or assigned).</description>
       <datatype>
         <vodml-ref>mango:Property</vodml-ref>
       </datatype>
@@ -315,7 +276,8 @@ them (see DataLink 1.1).</description>
   <objectType>
     <vodml-id>Property</vodml-id>
     <name>Property</name>
-    <description>Class holder for a particular property, either physical or calculated, of the MANGO object.
+    <description>Class holder for a \textit{flavor} of property&#8217; ie: there should be a Property subclass for each \textit{flavor} of Property being hosted.
+The property types are not limited to &#8220;physical or calculated&#8221; (eg: flags, assigned labels)
 This class specifies both type and role of the  property, and hosts the property instance itself.
 </description>
     <constraint>
@@ -337,12 +299,12 @@ vocabulary, http://www.ivoa.net/rdf/datalink/core. Terms from this
 vocabulary must always be written as relative URIs. This means that for
 concepts from the core vocabulary, the value in the semantics fieldz always
 starts with a hash. (datalink1.1).
-The semantic concept apply to a single property or to the set made of the property and its associated properties (e.g. position and flag).</description>
+The semantics concept applies to a single property or to the set made of the property and its associated properties (e.g. position and flag).</description>
       <datatype>
         <vodml-ref>mango:VocabularyTerm</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>1</minOccurs>
+        <minOccurs>0</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
     </attribute>
@@ -356,7 +318,7 @@ or of the set made of the property and its associated properties.
         <vodml-ref>ivoa:string</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>1</minOccurs>
+        <minOccurs>0</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
     </attribute>
@@ -371,7 +333,7 @@ and/or quality factors.
         <vodml-ref>mango:Property</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>1</minOccurs>
+        <minOccurs>0</minOccurs>
         <maxOccurs>-1</maxOccurs>
       </multiplicity>
     </reference>
@@ -473,7 +435,7 @@ Each value has its own free text description.</description>
         <vodml-ref>coords:SpaceSys</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>0</minOccurs>
+        <minOccurs>1</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
     </reference>
@@ -525,10 +487,8 @@ as defined by the \texttt{PhotDM} model.</description>
     <attribute>
       <vodml-id>PhysicalProperty.calibrationLevel</vodml-id>
       <name>calibrationLevel</name>
-      <description>Calibration level of the property as defined in ObsCore \citep{2011ivoa.spec.1028T}.</description>
-      <datatype>
-        <vodml-ref>mango:CalibrationLevel</vodml-ref>
-      </datatype>
+      <description>Calibration level of the property as defined 
+in \url{https://www.ivoa.net/rdf/processing-level/2024-11-12/processing-level.html}</description>
       <multiplicity>
         <minOccurs>1</minOccurs>
         <maxOccurs>1</maxOccurs>
@@ -764,7 +724,6 @@ Possible correlations between \texttt{EpochPosition} parameters are handle by th
       <vodml-id>EpochPosition.pmLongitude</vodml-id>
       <name>pmLongitude</name>
       <description>Velocity along the longitude axis in angular distance per unit time (see \texttt{meas:ProperMotion.coord}). 
-The current version of the model only allows a representation in the Polar coordinate space.
 </description>
       <datatype>
         <vodml-ref>ivoa:RealQuantity</vodml-ref>
@@ -778,7 +737,6 @@ The current version of the model only allows a representation in the Polar coord
       <vodml-id>EpochPosition.pmLatitude</vodml-id>
       <name>pmLatitude</name>
       <description>Velocity along the latitude axis in angular distance per unit time (see \texttt{meas:ProperMotion.coord}). 
-The current version of the model only allows a representation in the Polar coordinate space.
 </description>
       <datatype>
         <vodml-ref>ivoa:RealQuantity</vodml-ref>
@@ -791,7 +749,7 @@ The current version of the model only allows a representation in the Polar coord
     <attribute>
       <vodml-id>EpochPosition.epoch</vodml-id>
       <name>epoch</name>
-      <description>Position epoch expressed within the common time system (see \texttt{coords:epoch})</description>
+      <description>Position epoch expressed within the common time system (see \texttt{coords:Epoch})</description>
       <datatype>
         <vodml-ref>coords:Epoch</vodml-ref>
       </datatype>

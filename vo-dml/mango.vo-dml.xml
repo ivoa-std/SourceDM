@@ -10,7 +10,7 @@
   <author>Laurent Michel, Fran??ois Bonnarel, Gilles Landais, Mireille Louys, Marco Molinaro, Jesue Salgado</author>
   <version>1.0</version>
   <previousVersion>0.0</previousVersion>
-  <lastModified>2025-01-30T15:20:21</lastModified>
+  <lastModified>2025-01-30T18:39:44</lastModified>
   <import>
     <name>ivoa</name>
     <url>http://www.ivoa.net/xml/VODML/IVOA-v1.vo-dml.xml</url>
@@ -31,24 +31,6 @@
     <url>https://ivoa.net/xml/VODML/Phot-v1.vodml.xml</url>
     <documentationURL>https://ivoa.net/documents/PHOTDM/20221101/index.html</documentationURL>
   </import>
-  <enumeration>
-    <vodml-id>ShapeFrame</vodml-id>
-    <name>ShapeFrame</name>
-    <description> Possible options to encode a shape in a string.
-</description>
-    <literal>
-      <vodml-id>ShapeFrame.STC_S</vodml-id>
-      <name>STC_S</name>
-      <description>STCs serialisation
-</description>
-    </literal>
-    <literal>
-      <vodml-id>ShapeFrame.MOC</vodml-id>
-      <name>MOC</name>
-      <description>MOC serialisation</description>
-    </literal>
-  </enumeration>
-
   <enumeration>
     <vodml-id>ShapeSerialization</vodml-id>
     <name>ShapeSerialization</name>
