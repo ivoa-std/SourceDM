@@ -1115,9 +1115,8 @@ The confidence level must be in $[0, 1]$ (not enforced by the VO-DML schema).</d
       <attribute>
         <vodml-id>error.PropertyError.distribution</vodml-id>
         <name>distribution</name>
-        <description>
-          TODO : Missing description : please, update your UML model asap.
-        </description>
+        <description>Statistical distribution of the error. 
+The Value must comply with VO vocabulary TBD (not enforced by the VO-DML schema).</description>
         <datatype>
           <vodml-ref>ivoa:string</vodml-ref>
         </datatype>

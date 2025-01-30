@@ -1,7 +1,10 @@
 #! /bin/bash
 
-echo "build VODML"
+echo "----------- build VODML"
 python -m processVodml
+
+echo "----------- Apply custom TOC"
+python -m processTOC
 
 echo "build MIVOT snippets"
 

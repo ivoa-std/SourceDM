@@ -13,7 +13,12 @@ The process is 3 steps:
   - XSLT transform
   - style sheet `ivoatex/vo-dml2ivoatex.xslt`
 
-
+- apply the custom TOC from `toc.json`
+  - edit the custom toc (new section must contain the `(added)` word
+  - The TEX document is rebuilt following that TOC
+  - The head text of the added section is in `vo-dml/sections`
+  ) The finlma TEX file is named model_toc.tex `model_toc.tex`
+  
 ```bash
 % python -m processVodml
 % cd ../doc
