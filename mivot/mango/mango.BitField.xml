@@ -11,15 +11,4 @@ This constraint is not enforced by the model." -->
    </INSTANCE>
    <ATTRIBUTE dmrole="mango:Property.description" dmtype="ivoa:string" ref="@@@@@" value=""/>
    <ATTRIBUTE dmrole="mango:Status.status" dmtype="ivoa:integer" unit="" ref="@@@@@" value=""/>
-   <INSTANCE dmrole="mango:Status.allowedValues" dmtype="mango:StatusValues">
-      <!-- Class holder for the list of the allowed values for the status. 
-" -->
-      <COLLECTION dmrole="mango:StatusValues.values">
-         <INSTANCE dmrole="" dmtype="mango:StatusValue">
-            <!-- Value allowed for a status; contain the value with a free text description." -->
-            <ATTRIBUTE dmrole="mango:StatusValue.value" dmtype="ivoa:integer" unit="" ref="@@@@@" value=""/>
-            <ATTRIBUTE dmrole="mango:StatusValue.description" dmtype="ivoa:string" ref="@@@@@" value=""/>
-         </INSTANCE>
-      </COLLECTION>
-   </INSTANCE>
 </INSTANCE>

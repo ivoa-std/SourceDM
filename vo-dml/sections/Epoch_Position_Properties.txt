@@ -1,0 +1,2 @@
+This section collects all the classes that model the case of epoch propagation. 
+In addition to the 6 sky position parameters, it also models their correlation and the errors.

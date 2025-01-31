@@ -1,1 +1,2 @@
-Calibration level of the property as defined in ObsCore \citep{2011ivoa.spec.1028T}.
+Calibration level of the property as defined 
+in \url{https://www.ivoa.net/rdf/processing-level/2024-11-12/processing-level.html}

@@ -33,6 +33,7 @@
 *.fdb_latexmk
 *.fls
 *.gz
+*.pyc
 draft-background.*
 # Maven 
 target/

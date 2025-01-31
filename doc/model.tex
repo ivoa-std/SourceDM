@@ -62,6 +62,16 @@
   \label{sect:BitField}
     Property for which each possible value is represented by a bit, so that multiple states can be contained in the same integer value. The possible values are defined in the associated \texttt{StatusValues}, which must correspond to a bit pattern (each value must be a power of 2). This constraint is not enforced by the model.
 
+  \subsection{Brightness}
+  \label{sect:Brightness}
+    Observed brightness of the \texttt{MangoObject}. The distinction between fluxes and magnitudes is made by the unit. This property should refer to a photometric calibration as defined by the \texttt{Phot} data model (1.1).
+
+    \subsubsection{Brightness.photCal}
+      \textbf{vodml-id: Brightness.photCal} \newline
+      \textbf{type: Phot:PhotCal} \newline
+      \textbf{multiplicity: 1} \newline
+      Photometric calibration that applies to the photometric property. It must be an instance of \texttt{photdm:PhotCal}.
+
   \subsection{Color}
   \label{sect:Color}
     Property that describes a color of the \texttt{MangoObject}. The color is not an intrinsic property of the MANGO object, but a value relative to two filters or energy bands.
@@ -162,19 +172,19 @@
       \textbf{vodml-id: EpochPosition.pmLongitude} \newline
       \textbf{type: \hyperref[sect:ivoa]{ivoa:RealQuantity}} \newline
       \textbf{multiplicity: 1} \newline
-      Velocity along the longitude axis in angular distance per unit time (see \texttt{meas:ProperMotion.coord}). The current version of the model only allows a representation in the Polar coordinate space.
+      Velocity along the longitude axis in angular distance per unit time (see \texttt{meas:ProperMotion.coord}).
 
     \subsubsection{EpochPosition.pmLatitude}
       \textbf{vodml-id: EpochPosition.pmLatitude} \newline
       \textbf{type: \hyperref[sect:ivoa]{ivoa:RealQuantity}} \newline
       \textbf{multiplicity: 1} \newline
-      Velocity along the latitude axis in angular distance per unit time (see \texttt{meas:ProperMotion.coord}). The current version of the model only allows a representation in the Polar coordinate space.
+      Velocity along the latitude axis in angular distance per unit time (see \texttt{meas:ProperMotion.coord}).
 
     \subsubsection{EpochPosition.epoch}
       \textbf{vodml-id: EpochPosition.epoch} \newline
       \textbf{type: coords:Epoch} \newline
       \textbf{multiplicity: 1} \newline
-      Position epoch expressed within the common time system (see \texttt{coords:epoch})
+      Position epoch expressed within the common time system (see \texttt{coords:Epoch})
 
     \subsubsection{EpochPosition.pmCosLat\_applied}
       \textbf{vodml-id: EpochPosition.pmCosLat\_applied} \newline
@@ -282,26 +292,26 @@
 
     \subsubsection{EpochPositionErrors.parallax}
       \textbf{vodml-id: EpochPositionErrors.parallax} \newline
-      \textbf{type: \hyperref[sect:error.Symmetric1D]{mango:error.Symmetric1D}} \newline
-      \textbf{multiplicity: 0..1} \newline
+      \textbf{type: \hyperref[sect:error.PropertyError]{mango:error.PropertyError}} \newline
+      \textbf{multiplicity: 1} \newline
       Parallax error. This error is meant to be symmetrical in the current model version.
 
     \subsubsection{EpochPositionErrors.radialVelocity}
       \textbf{vodml-id: EpochPositionErrors.radialVelocity} \newline
-      \textbf{type: \hyperref[sect:error.Symmetric1D]{mango:error.Symmetric1D}} \newline
-      \textbf{multiplicity: 0..1} \newline
+      \textbf{type: \hyperref[sect:error.PropertyError]{mango:error.PropertyError}} \newline
+      \textbf{multiplicity: 1} \newline
       Error in the radial velocity. This error is meant to be symmetrical in the current model version.
-
-    \subsubsection{EpochPositionErrors.position}
-      \textbf{vodml-id: EpochPositionErrors.position} \newline
-      \textbf{type: \hyperref[sect:error.PropertyError2D]{mango:error.PropertyError2D}} \newline
-      \textbf{multiplicity: 0..1} \newline
-      Position error; can be an ellipse, a correlation matrix or a covariance matrix.
 
     \subsubsection{EpochPositionErrors.properMotion}
       \textbf{vodml-id: EpochPositionErrors.properMotion} \newline
-      \textbf{type: \hyperref[sect:error.PropertyError2D]{mango:error.PropertyError2D}} \newline
-      \textbf{multiplicity: 0..1} \newline
+      \textbf{type: \hyperref[sect:error.PropertyError]{mango:error.PropertyError}} \newline
+      \textbf{multiplicity: 1} \newline
+      Position error; can be an ellipse, a correlation matrix or a covariance matrix.
+
+    \subsubsection{EpochPositionErrors.Position}
+      \textbf{vodml-id: EpochPositionErrors.Position} \newline
+      \textbf{type: \hyperref[sect:error.PropertyError]{mango:error.PropertyError}} \newline
+      \textbf{multiplicity: 1} \newline
       Position error; can be an ellipse, a correlation matrix or a covariance matrix.
 
   \subsection{Label}
@@ -328,7 +338,7 @@
       \textbf{vodml-id: MangoObject.propertyDock} \newline
       \textbf{type: \hyperref[sect:Property]{mango:Property}} \newline
       \textbf{multiplicity: 0..*} \newline
-      Reference to the open-ended collection of the \texttt{MangoObject} properties (physical or calculated).
+      Contains the open-ended collection of the \texttt{MangoObject} properties (physical, calculated or assigned).
 
     \subsubsection{MangoObject.dataOrigin}
       \textbf{vodml-id: MangoObject.dataOrigin} \newline
@@ -344,7 +354,7 @@
 
   \subsection{PhotometricProperty}
   \label{sect:PhotometricProperty}
-    Observed brightness of the \texttt{MangoObject}. The distinction between fluxes and magnitudes is made by the unit. This property should refer to a photometric calibration as defined by the \texttt{Phot} data model (1.1).
+    Super class for all photometric properties of the \texttt{MangoObject}.
 
     \subsubsection{PhotometricProperty.value}
       \textbf{vodml-id: PhotometricProperty.value} \newline
@@ -355,14 +365,8 @@
     \subsubsection{PhotometricProperty.error}
       \textbf{vodml-id: PhotometricProperty.error} \newline
       \textbf{type: meas:Uncertainty} \newline
-      \textbf{multiplicity: 0..1} \newline
-      Error on the \texttt{PhotometricProperty}, imported from \texttt{meas:Uncertainty}.
-
-    \subsubsection{PhotometricProperty.photCal}
-      \textbf{vodml-id: PhotometricProperty.photCal} \newline
-      \textbf{type: Phot:PhotCal} \newline
       \textbf{multiplicity: 1} \newline
-      Photometric calibration that applies to the photometric property. It must be an instance of \texttt{photdm:PhotCal}.
+      Error on the \texttt{PhotometricProperty}, imported from \texttt{meas:Uncertainty}.
 
   \subsection{PhysicalProperty}
   \label{sect:PhysicalProperty}
@@ -370,9 +374,9 @@
 
     \subsubsection{PhysicalProperty.calibrationLevel}
       \textbf{vodml-id: PhysicalProperty.calibrationLevel} \newline
-      \textbf{type: \hyperref[sect:CalibrationLevel]{mango:CalibrationLevel}} \newline
+      \textbf{type: } \newline
       \textbf{multiplicity: 1} \newline
-      Calibration level of the property as defined in ObsCore \citep{2011ivoa.spec.1028T}.
+      Calibration level of the property as defined in \url{https://www.ivoa.net/rdf/processing-level/2024-11-12/processing-level.html}
 
     \subsubsection{PhysicalProperty.measure}
       \textbf{vodml-id: PhysicalProperty.measure} \newline
@@ -382,7 +386,7 @@
 
   \subsection{Property}
   \label{sect:Property}
-    Class holder for a particular property, either physical or calculated, of the MANGO object. This class specifies both type and role of the property, and hosts the property instance itself.
+    Class holder for a \textit{flavor} of property’ ie: there should be a Property subclass for each \textit{flavor} of Property being hosted. The property types are not limited to “physical or calculated” (eg: flags, assigned labels) This class specifies both type and role of the property, and hosts the property instance itself.
 
     \noindent \textbf{constraint} \newline
     \indent    \textbf{detail: Property.One association at the time
@@ -392,19 +396,19 @@
     \subsubsection{Property.semantics}
       \textbf{vodml-id: Property.semantics} \newline
       \textbf{type: \hyperref[sect:VocabularyTerm]{mango:VocabularyTerm}} \newline
-      \textbf{multiplicity: 1} \newline
-      Reference to a semantic concept giving the nature of the property or of the set made of the property and its associated properties. The semantics field contains a URI for a concept that describes the meaning of the property. This attribute is intended to be machine-readable and to assist automated link selection, presentation, and usage. The value is always interpreted as a URI; relative URIs (Berners-Lee and Fielding et al., 2005) are completed using the base URI of the core DataLink vocabulary, http://www.ivoa.net/rdf/datalink/core. Terms from this vocabulary must always be written as relative URIs. This means that for concepts from the core vocabulary, the value in the semantics fieldz always starts with a hash. (datalink1.1). The semantic concept apply to a single property or to the set made of the property and its associated properties (e.g. position and flag).
+      \textbf{multiplicity: 0..1} \newline
+      Reference to a semantic concept giving the nature of the property or of the set made of the property and its associated properties. The semantics field contains a URI for a concept that describes the meaning of the property. This attribute is intended to be machine-readable and to assist automated link selection, presentation, and usage. The value is always interpreted as a URI; relative URIs (Berners-Lee and Fielding et al., 2005) are completed using the base URI of the core DataLink vocabulary, http://www.ivoa.net/rdf/datalink/core. Terms from this vocabulary must always be written as relative URIs. This means that for concepts from the core vocabulary, the value in the semantics fieldz always starts with a hash. (datalink1.1). The semantics concept applies to a single property or to the set made of the property and its associated properties (e.g. position and flag).
 
     \subsubsection{Property.description}
       \textbf{vodml-id: Property.description} \newline
       \textbf{type: \hyperref[sect:ivoa]{ivoa:string}} \newline
-      \textbf{multiplicity: 1} \newline
+      \textbf{multiplicity: 0..1} \newline
       Free text description of the property or of the set made of the property and its associated properties.
 
     \subsubsection{Property.associatedProperties}
       \textbf{vodml-id: Property.associatedProperties} \newline
       \textbf{type: \hyperref[sect:Property]{mango:Property}} \newline
-      \textbf{multiplicity: 1..*} \newline
+      \textbf{multiplicity: 0..*} \newline
       Open-ended collection of MANGO properties associated with the \texttt{MangoObject}. These relationships are typically used to associate physical properties with time stamps and/or quality factors.
 
   \subsection{Shape}
@@ -426,7 +430,7 @@
     \subsubsection{Shape.spaceSys}
       \textbf{vodml-id: Shape.spaceSys} \newline
       \textbf{type: coords:SpaceSys} \newline
-      \textbf{multiplicity: 0..1} \newline
+      \textbf{multiplicity: 1} \newline
       Coordinate system that applies for the shape
 
   \subsection{Status}
@@ -442,7 +446,7 @@
     \subsubsection{Status.allowedValues}
       \textbf{vodml-id: Status.allowedValues} \newline
       \textbf{type: \hyperref[sect:StatusValues]{mango:StatusValues}} \newline
-      \textbf{multiplicity: 0..1} \newline
+      \textbf{multiplicity: 1} \newline
       List of the allowed values for the status. Each value has its own free text description.
 
   \subsection{StatusValue}
@@ -484,26 +488,8 @@
     \subsubsection{VocabularyTerm.label}
       \textbf{vodml-id: VocabularyTerm.label} \newline
       \textbf{type: \hyperref[sect:ivoa]{ivoa:string}} \newline
-      \textbf{multiplicity: 1} \newline
+      \textbf{multiplicity: 0..1} \newline
       Label attached to the vocabulary term. This is necessary because the URI may not contain any explicit label. This was the case for the IUA vocabulary until the Registry WG introduced rewriting rules that fix the issue.
-
-  \subsection{ShapeFrame}
-  \label{sect:ShapeFrame}
-
-  Possible schemes to encode a shape in a string
-
-  \noindent \underline{Enumeration Literals}
-  \vspace{-\parsep}
-  \small
-  \begin{itemize}
-  
-    \item[\textbf{STC\_S}]: \textbf{vodml-id:} ShapeFrame.STC\_S \newline
-          \textbf{description:} MOC serialization
-    \item[\textbf{MOC}]: \textbf{vodml-id:} ShapeFrame.MOC \newline
-          \textbf{description:} MOC serialization
-  \end{itemize}
-  \normalsize
-
 
   \subsection{ShapeSerialization}
   \label{sect:ShapeSerialization}
@@ -521,26 +507,6 @@
           \textbf{description:} Label indicating that the shape has been serialized as a STC-S \citep{2007ivoa.spec.1030R} string
     \item[\textbf{POLYGON}]: \textbf{vodml-id:} ShapeSerialization.POLYGON \newline
           \textbf{description:} Label indicating that the shape has been serialized as a polygon (cf xtypes)
-  \end{itemize}
-  \normalsize
-
-
-  \subsection{CalibrationLevel}
-  \label{sect:CalibrationLevel}
-
-  Enumeration of different possible calibration status of the property as defined in Obscore
-
-  \noindent \underline{Enumeration Literals}
-  \vspace{-\parsep}
-  \small
-  \begin{itemize}
-  
-    \item[\textbf{Raw}]: \textbf{vodml-id:} CalibrationLevel.Raw \newline
-          \textbf{description:} Raw instrumental data, in a proprietary or internal data provider defined format, that needs instrument specific tools to be handled (ObsCore)
-    \item[\textbf{Instrumental}]: \textbf{vodml-id:} CalibrationLevel.Instrumental \newline
-          \textbf{description:} Instrumental data in a standard format which could be manipulated with standard astronomical packages (ObsCore).
-    \item[\textbf{Calibrated}]: \textbf{vodml-id:} CalibrationLevel.Calibrated \newline
-          \textbf{description:} Science ready data with the instrument signature removed (ObsCore)
   \end{itemize}
   \normalsize
 
@@ -601,7 +567,7 @@
 
   \subsection{Ellipse}
   \label{sect:error.Ellipse}
-    Elliptic error for 2D parameters such as sky positions. Major axis and minor axis have their own units, which must be the same for both. This is not enforced by the model.
+    Elliptic error for 2D parameters such as sky positions. Major axis and minor axis have their own units, which must be the same for both. This is not enforced by the model. The definition of the ellipse attribute is imported from \texttt{coords:Ellipse}.
 
     \subsubsection{Ellipse.semiMajorAxis}
       \textbf{vodml-id: error.Ellipse.semiMajorAxis} \newline
@@ -675,9 +641,11 @@
       \textbf{multiplicity: 1} \newline
       Confidence level of the error. The confidence level must be in $[0, 1]$ (not enforced by the VO-DML schema).
 
-  \subsection{PropertyError2D (Abstract)}
-  \label{sect:error.PropertyError2D}
-    Super (abstract) class for all errors of 2D parameters
+    \subsubsection{PropertyError.distribution}
+      \textbf{vodml-id: error.PropertyError.distribution} \newline
+      \textbf{type: \hyperref[sect:ivoa]{ivoa:string}} \newline
+      \textbf{multiplicity: 1} \newline
+      Statistical distribution of the error. The Value must comply with VO vocabulary TBD (not enforced by the VO-DML schema).
 
   \subsection{Symmetric1D}
   \label{sect:error.Symmetric1D}

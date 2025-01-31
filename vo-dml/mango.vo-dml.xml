@@ -10,7 +10,7 @@
   <author>Laurent Michel, Fran??ois Bonnarel, Gilles Landais, Mireille Louys, Marco Molinaro, Jesue Salgado</author>
   <version>1.0</version>
   <previousVersion>0.0</previousVersion>
-  <lastModified>2024-10-17T16:22:43</lastModified>
+  <lastModified>2025-01-30T18:39:44</lastModified>
   <import>
     <name>ivoa</name>
     <url>http://www.ivoa.net/xml/VODML/IVOA-v1.vo-dml.xml</url>
@@ -31,24 +31,6 @@
     <url>https://ivoa.net/xml/VODML/Phot-v1.vodml.xml</url>
     <documentationURL>https://ivoa.net/documents/PHOTDM/20221101/index.html</documentationURL>
   </import>
-  <enumeration>
-    <vodml-id>ShapeFrame</vodml-id>
-    <name>ShapeFrame</name>
-    <description> Possible options to encode a shape in a string.
-</description>
-    <literal>
-      <vodml-id>ShapeFrame.STC_S</vodml-id>
-      <name>STC_S</name>
-      <description>STCs serialisation
-</description>
-    </literal>
-    <literal>
-      <vodml-id>ShapeFrame.MOC</vodml-id>
-      <name>MOC</name>
-      <description>MOC serialisation</description>
-    </literal>
-  </enumeration>
-
   <enumeration>
     <vodml-id>ShapeSerialization</vodml-id>
     <name>ShapeSerialization</name>
@@ -75,29 +57,6 @@
       <description>
           TODO : Missing description : please, update your UML model asap.
         </description>
-    </literal>
-  </enumeration>
-
-  <enumeration>
-    <vodml-id>CalibrationLevel</vodml-id>
-    <name>CalibrationLevel</name>
-    <description>Science ready data with the instrument signature removed (ObsCore).</description>
-    <literal>
-      <vodml-id>CalibrationLevel.Raw</vodml-id>
-      <name>Raw</name>
-      <description>Raw  instrumental  data,  in  a  proprietary  or  internal  data provider  defined  format,  that  needs instrument specific tools to be handled (ObsCore). 
-</description>
-    </literal>
-    <literal>
-      <vodml-id>CalibrationLevel.Instrumental</vodml-id>
-      <name>Instrumental</name>
-      <description>Instrumental  data  in  a  standard  format  which could be manipulated with standard astronomical packages (ObsCore).</description>
-    </literal>
-    <literal>
-      <vodml-id>CalibrationLevel.Calibrated</vodml-id>
-      <name>Calibrated</name>
-      <description>Science ready data with the instrument signature removed (ObsCore).
-</description>
     </literal>
   </enumeration>
 
@@ -149,7 +108,7 @@
         <vodml-ref>ivoa:string</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>1</minOccurs>
+        <minOccurs>0</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
     </attribute>
@@ -339,7 +298,7 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         <vodml-ref>mango:VocabularyTerm</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>1</minOccurs>
+        <minOccurs>0</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
     </attribute>
@@ -352,7 +311,7 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         <vodml-ref>ivoa:string</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>1</minOccurs>
+        <minOccurs>0</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
     </attribute>
@@ -364,7 +323,7 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         <vodml-ref>mango:Property</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>1</minOccurs>
+        <minOccurs>0</minOccurs>
         <maxOccurs>-1</maxOccurs>
       </multiplicity>
     </reference>
@@ -393,7 +352,7 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         <maxOccurs>1</maxOccurs>
       </multiplicity>
     </attribute>
-    <composition>
+    <reference>
       <vodml-id>Status.allowedValues</vodml-id>
       <name>allowedValues</name>
       <description>
@@ -403,10 +362,10 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         <vodml-ref>mango:StatusValues</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>0</minOccurs>
+        <minOccurs>1</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
-    </composition>
+    </reference>
   </objectType>
 
   <objectType>
@@ -481,7 +440,7 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         <vodml-ref>coords:SpaceSys</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>0</minOccurs>
+        <minOccurs>1</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
     </reference>
@@ -510,7 +469,7 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         <maxOccurs>1</maxOccurs>
       </multiplicity>
     </attribute>
-    <composition>
+    <attribute>
       <vodml-id>PhotometricProperty.error</vodml-id>
       <name>error</name>
       <description>
@@ -520,24 +479,10 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         <vodml-ref>meas:Uncertainty</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>0</minOccurs>
-        <maxOccurs>1</maxOccurs>
-      </multiplicity>
-    </composition>
-    <reference>
-      <vodml-id>PhotometricProperty.photCal</vodml-id>
-      <name>photCal</name>
-      <description>
-          TODO : Missing description : please, update your UML model asap.
-        </description>
-      <datatype>
-        <vodml-ref>Phot:PhotCal</vodml-ref>
-      </datatype>
-      <multiplicity>
         <minOccurs>1</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
-    </reference>
+    </attribute>
   </objectType>
 
   <objectType>
@@ -555,9 +500,6 @@ As long as the vocabulary is not set, the possible values of this attribute are 
       <description>
           TODO : Missing description : please, update your UML model asap.
         </description>
-      <datatype>
-        <vodml-ref>mango:CalibrationLevel</vodml-ref>
-      </datatype>
       <multiplicity>
         <minOccurs>1</minOccurs>
         <maxOccurs>1</maxOccurs>
@@ -624,7 +566,7 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         <maxOccurs>1</maxOccurs>
       </multiplicity>
     </attribute>
-    <composition>
+    <reference>
       <vodml-id>ColorDef.high</vodml-id>
       <name>high</name>
       <description>
@@ -637,8 +579,8 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         <minOccurs>1</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
-    </composition>
-    <composition>
+    </reference>
+    <reference>
       <vodml-id>ColorDef.low</vodml-id>
       <name>low</name>
       <description>
@@ -651,7 +593,7 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         <minOccurs>1</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
-    </composition>
+    </reference>
   </objectType>
 
   <objectType>
@@ -904,58 +846,62 @@ As long as the vocabulary is not set, the possible values of this attribute are 
     <vodml-id>EpochPositionErrors</vodml-id>
     <name>EpochPositionErrors</name>
     <description>Class for the error attached to a EpochPosition. The component in this class represent the errors of individual parameters as well as errors due to the parameter correlations.</description>
-    <composition>
+    <attribute>
       <vodml-id>EpochPositionErrors.parallax</vodml-id>
       <name>parallax</name>
-      <description>Parallax error. This error is meant to be symetrical.</description>
-      <datatype>
-        <vodml-ref>mango:error.Symmetric1D</vodml-ref>
-      </datatype>
-      <multiplicity>
-        <minOccurs>0</minOccurs>
-        <maxOccurs>1</maxOccurs>
-      </multiplicity>
-    </composition>
-    <composition>
-      <vodml-id>EpochPositionErrors.radialVelocity</vodml-id>
-      <name>radialVelocity</name>
-      <description>Error in the radial velocity. This error is meant to be symetrical.</description>
-      <datatype>
-        <vodml-ref>mango:error.Symmetric1D</vodml-ref>
-      </datatype>
-      <multiplicity>
-        <minOccurs>0</minOccurs>
-        <maxOccurs>1</maxOccurs>
-      </multiplicity>
-    </composition>
-    <composition>
-      <vodml-id>EpochPositionErrors.position</vodml-id>
-      <name>position</name>
       <description>
           TODO : Missing description : please, update your UML model asap.
         </description>
       <datatype>
-        <vodml-ref>mango:error.PropertyError2D</vodml-ref>
+        <vodml-ref>mango:error.PropertyError</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>0</minOccurs>
+        <minOccurs>1</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
-    </composition>
-    <composition>
+    </attribute>
+    <attribute>
+      <vodml-id>EpochPositionErrors.radialVelocity</vodml-id>
+      <name>radialVelocity</name>
+      <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+      <datatype>
+        <vodml-ref>mango:error.PropertyError</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
       <vodml-id>EpochPositionErrors.properMotion</vodml-id>
       <name>properMotion</name>
       <description>
           TODO : Missing description : please, update your UML model asap.
         </description>
       <datatype>
-        <vodml-ref>mango:error.PropertyError2D</vodml-ref>
+        <vodml-ref>mango:error.PropertyError</vodml-ref>
       </datatype>
       <multiplicity>
-        <minOccurs>0</minOccurs>
+        <minOccurs>1</minOccurs>
         <maxOccurs>1</maxOccurs>
       </multiplicity>
-    </composition>
+    </attribute>
+    <attribute>
+      <vodml-id>EpochPositionErrors.Position</vodml-id>
+      <name>Position</name>
+      <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+      <datatype>
+        <vodml-ref>mango:error.PropertyError</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
   </objectType>
 
   <objectType>
@@ -1118,6 +1064,31 @@ As long as the vocabulary is not set, the possible values of this attribute are 
     </attribute>
   </objectType>
 
+  <objectType>
+    <vodml-id>Brightness</vodml-id>
+    <name>Brightness</name>
+    <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+    <extends>
+      <vodml-ref>mango:PhotometricProperty</vodml-ref>
+    </extends>
+    <reference>
+      <vodml-id>Brightness.photCal</vodml-id>
+      <name>photCal</name>
+      <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+      <datatype>
+        <vodml-ref>Phot:PhotCal</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </reference>
+  </objectType>
+
 
 
   <package>
@@ -1140,6 +1111,20 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         <description>Confidence level of the error, expressed in \sigma.</description>
         <datatype>
           <vodml-ref>ivoa:real</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+      <attribute>
+        <vodml-id>error.PropertyError.distribution</vodml-id>
+        <name>distribution</name>
+        <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+        <datatype>
+          <vodml-ref>ivoa:string</vodml-ref>
         </datatype>
         <multiplicity>
           <minOccurs>1</minOccurs>
@@ -1174,7 +1159,7 @@ As long as the vocabulary is not set, the possible values of this attribute are 
       <name>ErrorCovMatrix</name>
       <description>Diagonal 2D  matrix. Non diagonal elements are null.</description>
       <extends>
-        <vodml-ref>mango:error.PropertyError2D</vodml-ref>
+        <vodml-ref>mango:error.PropertyError</vodml-ref>
       </extends>
       <attribute>
         <vodml-id>error.ErrorCovMatrix.variance1</vodml-id>
@@ -1221,7 +1206,7 @@ As long as the vocabulary is not set, the possible values of this attribute are 
       <name>Ellipse</name>
       <description>Elliptical errror for 2D parameters such as the sky positions.</description>
       <extends>
-        <vodml-ref>mango:error.PropertyError2D</vodml-ref>
+        <vodml-ref>mango:error.PropertyError</vodml-ref>
       </extends>
       <attribute>
         <vodml-id>error.Ellipse.semiMajorAxis</vodml-id>
@@ -1261,17 +1246,6 @@ As long as the vocabulary is not set, the possible values of this attribute are 
       </attribute>
     </dataType>
 
-    <dataType abstract="true">
-      <vodml-id>error.PropertyError2D</vodml-id>
-      <name>PropertyError2D</name>
-      <description>
-          TODO : Missing description : please, update your UML model asap.
-        </description>
-      <extends>
-        <vodml-ref>mango:error.PropertyError</vodml-ref>
-      </extends>
-    </dataType>
-
     <dataType>
       <vodml-id>error.ErrorCorrMatrix</vodml-id>
       <name>ErrorCorrMatrix</name>
@@ -1279,7 +1253,7 @@ As long as the vocabulary is not set, the possible values of this attribute are 
           TODO : Missing description : please, update your UML model asap.
         </description>
       <extends>
-        <vodml-ref>mango:error.PropertyError2D</vodml-ref>
+        <vodml-ref>mango:error.PropertyError</vodml-ref>
       </extends>
       <attribute>
         <vodml-id>error.ErrorCorrMatrix.sigma1</vodml-id>

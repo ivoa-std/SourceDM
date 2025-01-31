@@ -299,7 +299,7 @@ In addition to its identifier, \texttt{MANGOObject} objects have 2 components:
 \label{table:properties}
 \end{center}
  \end{table}
-This initial release supports a limited list of properties, listed in table \ref{table:properties}, that address the most common use cases.
+This initial release supports a limited list of property types, listed in table \ref{table:properties}, that address the most common use cases.
 
 All of these components are described in alphabetical order in the next section. 
 
@@ -322,14 +322,14 @@ for the client to understand the actual nature of each property:
 \end{itemize}
 
 
-\subsubsection{MANGO and MIVOT: Structuring Tabular Data}
+\subsubsection{MANGO and MIVOT: 2 Strategies for Structuring Tabular Data}
 
 MANGO is primarily used to organise tabular data provided by TAP services \citep{2019ivoa.spec.0927D} 
 other DAL nodes (one of the reference implementation is based on a Vizier SCS).
 To achieve this, table rows must be linked to the model using MIVOT annotations.
 We propose two strategies for establishing this mapping:
 \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
-    \item Single Object per Row: Each table row is treated as a single object,
+    \item Single Object per Row: Each table row is treated as a single object, a \texttt{MangoObject} instance.
           with its properties grouped within a container or dock.
     \item Scattered Independent Quantities: Each table row is considered as a collection of independent quantities.
 \end{itemize}
@@ -356,17 +356,8 @@ This document does not favour one approach over the other.
 The decision ultimately rests with the data providers.
 However, both options are based on the full-featured MANGO model.
 
-%\section{Model: mango in details} 
-%\label{section:mangomodel_desc}
-%  The purpose of MANGO, which stands for MO-del for AN-notating G-eneric O-objects, is to add an upper level of description to the tabular data of query responses. It allows metadata to be extended, complex quantities to be reconstructed from column values, and properties to be linked. It also allows to specify the origin of the data.
-%Here is an overview of the data model organization. 
-
-%\subsection{Building blocks}
-%  \input{model_principles_head.tex}
-%
-%\subsection{Model Dictionnary}
-\input{model.tex}
-
+%\input{model.tex}
+\input{model_toc.tex}
 
 \section{Integrating MANGO with TAP Services}
 \input{tap.tex}

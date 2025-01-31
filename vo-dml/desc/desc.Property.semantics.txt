@@ -10,4 +10,4 @@ vocabulary, http://www.ivoa.net/rdf/datalink/core. Terms from this
 vocabulary must always be written as relative URIs. This means that for
 concepts from the core vocabulary, the value in the semantics fieldz always
 starts with a hash. (datalink1.1).
-The semantic concept apply to a single property or to the set made of the property and its associated properties (e.g. position and flag).
+The semantics concept applies to a single property or to the set made of the property and its associated properties (e.g. position and flag).

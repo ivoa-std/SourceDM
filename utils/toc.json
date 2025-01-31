@@ -1,0 +1,49 @@
+{
+    "Model: mango ": {
+        "MangoObject": {},
+        "AssociatedMangoObject": {},
+        "Property": {},
+        "VocabularyTerm": {}
+    },
+    "Epoch Position Properties (added)": {
+        "EpochPosition": {},
+        "EpochPositionCorrelations": {},
+        "EpochPositionErrors": {}
+    },
+    "Photometric Properties (added)": {
+        "PhotometricProperty": {},
+        "Brightness": {},
+        "Color": {},
+        "ColorDef": {},
+        "ColorDefinition": {}
+    },
+    "Physical Properties (added)": {
+        "PhysicalProperty": {},
+        "CalibrationLevel": {}
+    },
+    "Other Properties (added)": {
+        "Label": {},
+        "Status": {},
+        "StatusValues": {},
+        "StatusValue": {},
+        "BitField": {},
+        "DataLink": {},
+        "Shape": {},
+        "ShapeFrame": {},
+        "ShapeSerialization": {}
+    },
+    "Package: error ": {
+        "Asymmetric1D": {},
+        "Ellipse": {},
+        "ErrorCorrMatrix": {},
+        "ErrorCovMatrix": {},
+        "PropertyError (Abstract)": {},
+        "Symmetric1D": {}
+    },
+    "Package: dataorigin ": {
+        "Article": {},
+        "DataOrigin": {},
+        "License": {},
+        "QueryOrigin": {}
+    }
+}
