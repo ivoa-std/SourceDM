@@ -44,7 +44,6 @@ def get_content(searched_title):
     """
     if ("added" in searched_title):
         return get_custom_content(searched_title)
-        
     started = False
     current_content = ""
     with open(tex_model_path) as tmp:
@@ -108,10 +107,10 @@ def main():
     print(f"Extract (sub)sections from {tex_model_path}")
     for section, content in toc.items():
         new_text += "\\section{" + section.replace("(added)", "").strip() + "}\n"
-        new_text += get_content(section) + "\n"
+        new_text += get_content(section.strip()) + "\n"
         for subsection, _ in content.items():
             new_text += "  \\subsection{" + subsection + "}\n"
-            new_text += get_content(subsection) + "\n"
+            new_text += get_content(subsection.strip()) + "\n"
 
     # save the new document
     print(f"Write rearranged document in {tex_omodel_path}")
