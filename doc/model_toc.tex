@@ -1,6 +1,7 @@
 \pagebreak
 
 \section{Model: mango}
+    The purpose of MANGO, which stands for MO-del for AN-notating G-eneric O-objects, is to add an upper level of description to the tabular data of query responses. It allows metadata to be extended, complex quantities to be reconstructed from column values, and properties to be linked. It also allows to specify the origin af the data.
 
   \subsection{MangoObject}
     \label{sect:MangoObject}
@@ -499,6 +500,12 @@ host objects imported from the \texttt{Measurements} data model.
     \normalsize
 
 \section{Package: error}
+    \begin{figure}[h]
+    \includegraphics[width=1.0\textwidth]{../model/error.png}
+    \caption{package error}
+    \label{fig:error}
+    \end{figure}
+    The \texttt{error} package (fig \ref{fig:error}) groups the MANGO built-in error classes. All these classes are derived from \texttt{meas:Uncertainty} to make them reusable by \texttt{meas:Measure} instances. Mango errors all have an attribute that specifies the confidence level
 
   \subsection{Asymmetric1D}
     \label{sect:error.Asymmetric1D}
@@ -609,6 +616,12 @@ host objects imported from the \texttt{Measurements} data model.
     Amplitude of the symmetric error on a one-dimensional parameter
 
 \section{Package: dataorigin}
+    \begin{figure}[h]
+    \includegraphics[width=1.0\textwidth]{../model/dataorigin.png}
+    \caption{package dataorigin}
+    \label{fig:dataorigin}
+    \end{figure}
+    Package grouping together all the components needed to model the origin of \texttt{MangoObject} (fig \ref{fig:dataorigin}).
 
   \subsection{Article}
     \label{sect:dataorigin.Article}
