@@ -7,7 +7,7 @@
   <author>Laurent Michel, Fran??ois Bonnarel, Gilles Landais, Mireille Louys, Marco Molinaro, Jesue Salgado</author>
   <version>1.0</version>
   <previousVersion>0.0</previousVersion>
-  <lastModified>2025-01-30T18:39:44</lastModified>
+  <lastModified>2025-02-06T11:41:26</lastModified>
   <import>
     <name>ivoa</name>
     <url>http://www.ivoa.net/xml/VODML/IVOA-v1.vo-dml.xml</url>
@@ -647,12 +647,13 @@ This constraint is not enforced by the model.</description>
   <objectType>
     <vodml-id>EpochPosition</vodml-id>
     <name>EpochPosition</name>
-    <description>This class (fig \ref{fig:EpochPosition}) is a view of \texttt{Astronomical Coordinates and Coordinate
-Systems} \citep{2022ivoa.specQ1004R} components that have been put together to form a consistent description 
-of the position of an object moving over time. 
-It consists of a celestial position, a proper motion, a radial velocity 
-and a parallax. 
-All components share the same coordinate systems for both time and space coordinates.
+    <description>This class (fig \ref{fig:EpochPosition}) is a view of \texttt{Astronomical Coordinates and Coordinate Systems}
+ \citep{2022ivoa.specQ1004R} components that have been combined to form a consistent description of 
+the position of an object moving in time. 
+
+It consists of a celestial position, a proper motion, a radial velocity and a parallax. 
+
+All components use the same coordinate systems for both time and space coordinates.
 
 \begin{itemize}
    \item Both position and proper motion reuse \texttt{coords:LonLatPoint} elements.
@@ -660,13 +661,22 @@ All components share the same coordinate systems for both time and space coordin
    \item The time coordinate system is imported from \texttt{coords:timeSys}.
 \end{itemize}
 
-The \texttt{EpochPosition} error is modeled by specific classes supporting covariance 
-and/or correlation between components.
 
-All individual components have their own units which must be consistent to each others. 
+All components have their own units which must be consistent with each other. 
 This consistency is not enforced by the model.
 
-Possible correlations between \texttt{EpochPosition} parameters are handle by the  \texttt{EpochPositionCorrelation} class.</description>
+Possible correlations between \texttt{EpochPosition} parameters are handled by the \texttt{EpochPositionCorrelations} class.
+Errors along the different axes are grouped in the \texttt{EpochPositionErrors} class.
+
+In some cases the errors might conflict with the correlations:
+
+\begin{itemize}
+   \item \texttt{Ellipse} errors on position or proper motion must not be used together with the 
+         \texttt{longitudeLatitude} (or \texttt{pmLongitudePmLatitude}) correlation fields.
+         In fact, using elliptical errors implies a correlation between the two spatial axes which must not conflict
+         with the correlations defined in \texttt{EpochPositionCorrelations}.
+\end{itemize}
+</description>
     <extends>
       <vodml-ref>mango:Property</vodml-ref>
     </extends>
@@ -854,7 +864,7 @@ providers to convey whether or not the factor has been applied (see \texttt{meas
     <attribute>
       <vodml-id>EpochPositionErrors.properMotion</vodml-id>
       <name>properMotion</name>
-      <description> Position error; can be an ellipse, a correlation matrix or a covariance matrix.</description>
+      <description> Proper motion error; can be an ellipse or a matrix.</description>
       <datatype>
         <vodml-ref>mango:error.PropertyError</vodml-ref>
       </datatype>
@@ -866,7 +876,7 @@ providers to convey whether or not the factor has been applied (see \texttt{meas
     <attribute>
       <vodml-id>EpochPositionErrors.Position</vodml-id>
       <name>Position</name>
-      <description> Position error; can be an ellipse, a correlation matrix or a covariance matrix.</description>
+      <description> Position error; can be an \texttt{Ellipse} or a \texttt{Symmetrical2D}.</description>
       <datatype>
         <vodml-ref>mango:error.PropertyError</vodml-ref>
       </datatype>
@@ -1086,62 +1096,16 @@ The Value must comply with VO vocabulary TBD (not enforced by the VO-DML schema)
     </dataType>
 
     <dataType>
-      <vodml-id>error.Symmetric1D</vodml-id>
-      <name>Symmetric1D</name>
-      <description>Symmetric error for 1D parameters</description>
+      <vodml-id>error.Symmetrical1D</vodml-id>
+      <name>Symmetrical1D</name>
+      <description>Symmetrical error for 1D parameters</description>
       <extends>
         <vodml-ref>mango:error.PropertyError</vodml-ref>
       </extends>
       <attribute>
-        <vodml-id>error.Symmetric1D.sigma</vodml-id>
+        <vodml-id>error.Symmetrical1D.sigma</vodml-id>
         <name>sigma</name>
-        <description>Amplitude of the symmetric error on a one-dimensional parameter</description>
-        <datatype>
-          <vodml-ref>ivoa:RealQuantity</vodml-ref>
-        </datatype>
-        <multiplicity>
-          <minOccurs>1</minOccurs>
-          <maxOccurs>1</maxOccurs>
-        </multiplicity>
-      </attribute>
-    </dataType>
-
-    <dataType>
-      <vodml-id>error.ErrorCovMatrix</vodml-id>
-      <name>ErrorCovMatrix</name>
-      <description>Covariance matrix for the error of a 2D quantities. 
-The covariance matrix is symmetrical.</description>
-      <extends>
-        <vodml-ref>mango:error.PropertyError</vodml-ref>
-      </extends>
-      <attribute>
-        <vodml-id>error.ErrorCovMatrix.variance1</vodml-id>
-        <name>variance1</name>
-        <description>Variance of the first dimension (right ascension in case of  sky coordinates)</description>
-        <datatype>
-          <vodml-ref>ivoa:RealQuantity</vodml-ref>
-        </datatype>
-        <multiplicity>
-          <minOccurs>1</minOccurs>
-          <maxOccurs>1</maxOccurs>
-        </multiplicity>
-      </attribute>
-      <attribute>
-        <vodml-id>error.ErrorCovMatrix.variance2</vodml-id>
-        <name>variance2</name>
-        <description>Variance of the second dimension (declination in case of sky coordinates)</description>
-        <datatype>
-          <vodml-ref>ivoa:RealQuantity</vodml-ref>
-        </datatype>
-        <multiplicity>
-          <minOccurs>1</minOccurs>
-          <maxOccurs>1</maxOccurs>
-        </multiplicity>
-      </attribute>
-      <attribute>
-        <vodml-id>error.ErrorCovMatrix.covariance</vodml-id>
-        <name>covariance</name>
-        <description>Covariance of the 2 axis</description>
+        <description>Amplitude of the symmetrical error on a one-dimensional parameter</description>
         <datatype>
           <vodml-ref>ivoa:RealQuantity</vodml-ref>
         </datatype>
@@ -1202,16 +1166,15 @@ The angle has its own unit.</description>
     </dataType>
 
     <dataType>
-      <vodml-id>error.ErrorCorrMatrix</vodml-id>
-      <name>ErrorCorrMatrix</name>
-      <description>Correlation matrix for the error of a 2D quantities. 
-The correlation matrix is symmetrical.
+      <vodml-id>error.Symmetrical2D</vodml-id>
+      <name>Symmetrical2D</name>
+      <description>Symmetrical error for 2D quantities. 
 </description>
       <extends>
         <vodml-ref>mango:error.PropertyError</vodml-ref>
       </extends>
       <attribute>
-        <vodml-id>error.ErrorCorrMatrix.sigma1</vodml-id>
+        <vodml-id>error.Symmetrical2D.sigma1</vodml-id>
         <name>sigma1</name>
         <description>Error on the first dimension (right ascension in case of  sky coordinates)</description>
         <datatype>
@@ -1223,7 +1186,7 @@ The correlation matrix is symmetrical.
         </multiplicity>
       </attribute>
       <attribute>
-        <vodml-id>error.ErrorCorrMatrix.sigma2</vodml-id>
+        <vodml-id>error.Symmetrical2D.sigma2</vodml-id>
         <name>sigma2</name>
         <description>Error on the second dimension (declination in case of sky coordinates)</description>
         <datatype>
@@ -1234,31 +1197,19 @@ The correlation matrix is symmetrical.
           <maxOccurs>1</maxOccurs>
         </multiplicity>
       </attribute>
-      <attribute>
-        <vodml-id>error.ErrorCorrMatrix.correlation</vodml-id>
-        <name>correlation</name>
-        <description>Correlation coefficient between the 2 axis</description>
-        <datatype>
-          <vodml-ref>ivoa:real</vodml-ref>
-        </datatype>
-        <multiplicity>
-          <minOccurs>1</minOccurs>
-          <maxOccurs>1</maxOccurs>
-        </multiplicity>
-      </attribute>
     </dataType>
 
     <dataType>
-      <vodml-id>error.Asymmetric1D</vodml-id>
-      <name>Asymmetric1D</name>
-      <description>Asymmetric error for 1D parameters</description>
+      <vodml-id>error.Asymmetrical1D</vodml-id>
+      <name>Asymmetrical1D</name>
+      <description>Asymmetrical error for 1D parameters</description>
       <extends>
         <vodml-ref>mango:error.PropertyError</vodml-ref>
       </extends>
       <attribute>
-        <vodml-id>error.Asymmetric1D.high</vodml-id>
+        <vodml-id>error.Asymmetrical1D.high</vodml-id>
         <name>high</name>
-        <description>High limit for the asymmetric error for 1D parameters</description>
+        <description>High limit for the asymmetrical error for 1D parameters</description>
         <datatype>
           <vodml-ref>ivoa:RealQuantity</vodml-ref>
         </datatype>
@@ -1268,9 +1219,9 @@ The correlation matrix is symmetrical.
         </multiplicity>
       </attribute>
       <attribute>
-        <vodml-id>error.Asymmetric1D.low</vodml-id>
+        <vodml-id>error.Asymmetrical1D.low</vodml-id>
         <name>low</name>
-        <description>Low limit for the asymmetric error for 1D parameters</description>
+        <description>Low limit for the asymmetrical error for 1D parameters</description>
         <datatype>
           <vodml-ref>ivoa:RealQuantity</vodml-ref>
         </datatype>
