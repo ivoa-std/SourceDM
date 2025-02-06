@@ -306,13 +306,13 @@
       \textbf{vodml-id: EpochPositionErrors.properMotion} \newline
       \textbf{type: \hyperref[sect:error.PropertyError]{mango:error.PropertyError}} \newline
       \textbf{multiplicity: 1} \newline
-      Position error; can be an ellipse, a correlation matrix or a covariance matrix.
+      Proper motion error; can be an ellipse or a matrix.
 
     \subsubsection{EpochPositionErrors.Position}
       \textbf{vodml-id: EpochPositionErrors.Position} \newline
       \textbf{type: \hyperref[sect:error.PropertyError]{mango:error.PropertyError}} \newline
       \textbf{multiplicity: 1} \newline
-      Position error; can be an ellipse, a correlation matrix or a covariance matrix.
+      Position error; can be an ellipse or a matrix.
 
   \subsection{Label}
   \label{sect:Label}
@@ -549,18 +549,18 @@
 
   The \texttt{error} package (fig \ref{fig:error}) groups the MANGO built-in error classes. All these classes are derived from \texttt{meas:Uncertainty} to make them reusable by \texttt{meas:Measure} instances. Mango errors all have an attribute that specifies the confidence level
 
-  \subsection{Asymmetric1D}
-  \label{sect:error.Asymmetric1D}
+  \subsection{Asymmetrical1D}
+  \label{sect:error.Asymmetrical1D}
     Asymmetric error for 1D parameters
 
-    \subsubsection{Asymmetric1D.high}
-      \textbf{vodml-id: error.Asymmetric1D.high} \newline
+    \subsubsection{Asymmetrical1D.high}
+      \textbf{vodml-id: error.Asymmetrical1D.high} \newline
       \textbf{type: \hyperref[sect:ivoa]{ivoa:RealQuantity}} \newline
       \textbf{multiplicity: 1} \newline
       High limit for the asymmetric error for 1D parameters
 
-    \subsubsection{Asymmetric1D.low}
-      \textbf{vodml-id: error.Asymmetric1D.low} \newline
+    \subsubsection{Asymmetrical1D.low}
+      \textbf{vodml-id: error.Asymmetrical1D.low} \newline
       \textbf{type: \hyperref[sect:ivoa]{ivoa:RealQuantity}} \newline
       \textbf{multiplicity: 1} \newline
       Low limit for the asymmetric error for 1D parameters
@@ -587,50 +587,6 @@
       \textbf{multiplicity: 1} \newline
       Angle between the North Polar Cape (NCP) and the major axis. This angle must be positive taking into account that angles are positive from North to the East. The angle has its own unit.
 
-  \subsection{ErrorCorrMatrix}
-  \label{sect:error.ErrorCorrMatrix}
-    Correlation matrix for the error of a 2D quantities. The correlation matrix is symmetrical.
-
-    \subsubsection{ErrorCorrMatrix.sigma1}
-      \textbf{vodml-id: error.ErrorCorrMatrix.sigma1} \newline
-      \textbf{type: \hyperref[sect:ivoa]{ivoa:RealQuantity}} \newline
-      \textbf{multiplicity: 1} \newline
-      Error on the first dimension (right ascension in case of sky coordinates)
-
-    \subsubsection{ErrorCorrMatrix.sigma2}
-      \textbf{vodml-id: error.ErrorCorrMatrix.sigma2} \newline
-      \textbf{type: \hyperref[sect:ivoa]{ivoa:RealQuantity}} \newline
-      \textbf{multiplicity: 1} \newline
-      Error on the second dimension (declination in case of sky coordinates)
-
-    \subsubsection{ErrorCorrMatrix.correlation}
-      \textbf{vodml-id: error.ErrorCorrMatrix.correlation} \newline
-      \textbf{type: \hyperref[sect:ivoa]{ivoa:real}} \newline
-      \textbf{multiplicity: 1} \newline
-      Correlation coefficient between the 2 axis
-
-  \subsection{ErrorCovMatrix}
-  \label{sect:error.ErrorCovMatrix}
-    Covariance matrix for the error of a 2D quantities. The covariance matrix is symmetrical.
-
-    \subsubsection{ErrorCovMatrix.variance1}
-      \textbf{vodml-id: error.ErrorCovMatrix.variance1} \newline
-      \textbf{type: \hyperref[sect:ivoa]{ivoa:RealQuantity}} \newline
-      \textbf{multiplicity: 1} \newline
-      Variance of the first dimension (right ascension in case of sky coordinates)
-
-    \subsubsection{ErrorCovMatrix.variance2}
-      \textbf{vodml-id: error.ErrorCovMatrix.variance2} \newline
-      \textbf{type: \hyperref[sect:ivoa]{ivoa:RealQuantity}} \newline
-      \textbf{multiplicity: 1} \newline
-      Variance of the second dimension (declination in case of sky coordinates)
-
-    \subsubsection{ErrorCovMatrix.covariance}
-      \textbf{vodml-id: error.ErrorCovMatrix.covariance} \newline
-      \textbf{type: \hyperref[sect:ivoa]{ivoa:RealQuantity}} \newline
-      \textbf{multiplicity: 1} \newline
-      Covariance of the 2 axis
-
   \subsection{PropertyError (Abstract)}
   \label{sect:error.PropertyError}
     Root (abstract) class of the errors that can be attached to a MANGO property. The class inherits from \texttt{meas:uncertainty} in order to be usable in the context of properties based on \texttt{Measures} classes.
@@ -647,15 +603,31 @@
       \textbf{multiplicity: 1} \newline
       Statistical distribution of the error. The Value must comply with VO vocabulary TBD (not enforced by the VO-DML schema).
 
-  \subsection{Symmetric1D}
-  \label{sect:error.Symmetric1D}
+  \subsection{Symmetrical1D}
+  \label{sect:error.Symmetrical1D}
     Symmetric error for 1D parameters
 
-    \subsubsection{Symmetric1D.sigma}
-      \textbf{vodml-id: error.Symmetric1D.sigma} \newline
+    \subsubsection{Symmetrical1D.sigma}
+      \textbf{vodml-id: error.Symmetrical1D.sigma} \newline
       \textbf{type: \hyperref[sect:ivoa]{ivoa:RealQuantity}} \newline
       \textbf{multiplicity: 1} \newline
       Amplitude of the symmetric error on a one-dimensional parameter
+
+  \subsection{Symmetrical2D}
+  \label{sect:error.Symmetrical2D}
+    Symmetrical error for 2D quantities.
+
+    \subsubsection{Symmetrical2D.sigma1}
+      \textbf{vodml-id: error.Symmetrical2D.sigma1} \newline
+      \textbf{type: \hyperref[sect:ivoa]{ivoa:RealQuantity}} \newline
+      \textbf{multiplicity: 1} \newline
+      Error on the first dimension (right ascension in case of sky coordinates)
+
+    \subsubsection{Symmetrical2D.sigma2}
+      \textbf{vodml-id: error.Symmetrical2D.sigma2} \newline
+      \textbf{type: \hyperref[sect:ivoa]{ivoa:RealQuantity}} \newline
+      \textbf{multiplicity: 1} \newline
+      Error on the second dimension (declination in case of sky coordinates)
 
 \pagebreak
 \section{Package: dataorigin }

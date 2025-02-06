@@ -10,7 +10,7 @@
   <author>Laurent Michel, Fran??ois Bonnarel, Gilles Landais, Mireille Louys, Marco Molinaro, Jesue Salgado</author>
   <version>1.0</version>
   <previousVersion>0.0</previousVersion>
-  <lastModified>2025-01-30T18:39:44</lastModified>
+  <lastModified>2025-02-06T11:41:26</lastModified>
   <import>
     <name>ivoa</name>
     <url>http://www.ivoa.net/xml/VODML/IVOA-v1.vo-dml.xml</url>
@@ -1134,63 +1134,16 @@ As long as the vocabulary is not set, the possible values of this attribute are 
     </dataType>
 
     <dataType>
-      <vodml-id>error.Symmetric1D</vodml-id>
-      <name>Symmetric1D</name>
+      <vodml-id>error.Symmetrical1D</vodml-id>
+      <name>Symmetrical1D</name>
       <description>Symetrical error for 1D parameter.</description>
       <extends>
         <vodml-ref>mango:error.PropertyError</vodml-ref>
       </extends>
       <attribute>
-        <vodml-id>error.Symmetric1D.sigma</vodml-id>
+        <vodml-id>error.Symmetrical1D.sigma</vodml-id>
         <name>sigma</name>
         <description>Error amplitude.</description>
-        <datatype>
-          <vodml-ref>ivoa:RealQuantity</vodml-ref>
-        </datatype>
-        <multiplicity>
-          <minOccurs>1</minOccurs>
-          <maxOccurs>1</maxOccurs>
-        </multiplicity>
-      </attribute>
-    </dataType>
-
-    <dataType>
-      <vodml-id>error.ErrorCovMatrix</vodml-id>
-      <name>ErrorCovMatrix</name>
-      <description>Diagonal 2D  matrix. Non diagonal elements are null.</description>
-      <extends>
-        <vodml-ref>mango:error.PropertyError</vodml-ref>
-      </extends>
-      <attribute>
-        <vodml-id>error.ErrorCovMatrix.variance1</vodml-id>
-        <name>variance1</name>
-        <description>First diagonal element ($(x_11)$)</description>
-        <datatype>
-          <vodml-ref>ivoa:RealQuantity</vodml-ref>
-        </datatype>
-        <multiplicity>
-          <minOccurs>1</minOccurs>
-          <maxOccurs>1</maxOccurs>
-        </multiplicity>
-      </attribute>
-      <attribute>
-        <vodml-id>error.ErrorCovMatrix.variance2</vodml-id>
-        <name>variance2</name>
-        <description>Second diagonal element ($(x_22)$)</description>
-        <datatype>
-          <vodml-ref>ivoa:RealQuantity</vodml-ref>
-        </datatype>
-        <multiplicity>
-          <minOccurs>1</minOccurs>
-          <maxOccurs>1</maxOccurs>
-        </multiplicity>
-      </attribute>
-      <attribute>
-        <vodml-id>error.ErrorCovMatrix.covariance</vodml-id>
-        <name>covariance</name>
-        <description>
-          TODO : Missing description : please, update your UML model asap.
-        </description>
         <datatype>
           <vodml-ref>ivoa:RealQuantity</vodml-ref>
         </datatype>
@@ -1247,8 +1200,8 @@ As long as the vocabulary is not set, the possible values of this attribute are 
     </dataType>
 
     <dataType>
-      <vodml-id>error.ErrorCorrMatrix</vodml-id>
-      <name>ErrorCorrMatrix</name>
+      <vodml-id>error.Symmetrical2D</vodml-id>
+      <name>Symmetrical2D</name>
       <description>
           TODO : Missing description : please, update your UML model asap.
         </description>
@@ -1256,7 +1209,7 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         <vodml-ref>mango:error.PropertyError</vodml-ref>
       </extends>
       <attribute>
-        <vodml-id>error.ErrorCorrMatrix.sigma1</vodml-id>
+        <vodml-id>error.Symmetrical2D.sigma1</vodml-id>
         <name>sigma1</name>
         <description>
           TODO : Missing description : please, update your UML model asap.
@@ -1270,7 +1223,7 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         </multiplicity>
       </attribute>
       <attribute>
-        <vodml-id>error.ErrorCorrMatrix.sigma2</vodml-id>
+        <vodml-id>error.Symmetrical2D.sigma2</vodml-id>
         <name>sigma2</name>
         <description>
           TODO : Missing description : please, update your UML model asap.
@@ -1283,25 +1236,11 @@ As long as the vocabulary is not set, the possible values of this attribute are 
           <maxOccurs>1</maxOccurs>
         </multiplicity>
       </attribute>
-      <attribute>
-        <vodml-id>error.ErrorCorrMatrix.correlation</vodml-id>
-        <name>correlation</name>
-        <description>
-          TODO : Missing description : please, update your UML model asap.
-        </description>
-        <datatype>
-          <vodml-ref>ivoa:real</vodml-ref>
-        </datatype>
-        <multiplicity>
-          <minOccurs>1</minOccurs>
-          <maxOccurs>1</maxOccurs>
-        </multiplicity>
-      </attribute>
     </dataType>
 
     <dataType>
-      <vodml-id>error.Asymmetric1D</vodml-id>
-      <name>Asymmetric1D</name>
+      <vodml-id>error.Asymmetrical1D</vodml-id>
+      <name>Asymmetrical1D</name>
       <description>
           TODO : Missing description : please, update your UML model asap.
         </description>
@@ -1309,7 +1248,7 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         <vodml-ref>mango:error.PropertyError</vodml-ref>
       </extends>
       <attribute>
-        <vodml-id>error.Asymmetric1D.high</vodml-id>
+        <vodml-id>error.Asymmetrical1D.high</vodml-id>
         <name>high</name>
         <description>
           TODO : Missing description : please, update your UML model asap.
@@ -1323,7 +1262,7 @@ As long as the vocabulary is not set, the possible values of this attribute are 
         </multiplicity>
       </attribute>
       <attribute>
-        <vodml-id>error.Asymmetric1D.low</vodml-id>
+        <vodml-id>error.Asymmetrical1D.low</vodml-id>
         <name>low</name>
         <description>
           TODO : Missing description : please, update your UML model asap.
